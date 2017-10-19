@@ -6,7 +6,7 @@ The framework consistes of a `Client` and `Server`. A `Client` is written once i
 
 The `Client` and `Server` only transfer scalars of type String, Boolean, Integer, Decimal, and null by value, all other objects are transfered by reference as a Memory Pointer.
 
-## What a simple test looks like
+## What a test looks like
 
 ```java
 public void testGetDocument() throws Exception {
@@ -31,7 +31,7 @@ public void testGetDocument() throws Exception {
 }
 ```
 
-## What that test lools like on the wire
+## What that test looks like on the wire
 
 ### database = database_create("foo")
 * **Request:**  POST http://localhost:3100/database_create?name="foo"
