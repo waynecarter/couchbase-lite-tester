@@ -74,8 +74,9 @@ public void testGetDocument() throws Exception {
 * **Content-Length:** 0
 
 ## A good place to start
-1. Run `couchbase.lite.tester.server.Server`
-2. Click on the links in the example above. The `Server` will process your requests and you will see the responses.
-3. Look at `couchbase.lite.tester.server.RequestHandler.java`. These methods are called from `Server.java` when a request is recieved.
-4. Look at `couchbase.lite.tester.client.TestCase.java`. These are the mothods used in the test example above. These methods call into `Client.java` which sends the requests over HTTP to the running `Server`.
-5. Look at `Tests/DatabaseTest.java` and `Tests/DocumentTest.java`. These classes derive from `TestCase` and can be run agianst any `Server` on any platform.
+1. Open `couchbase-lite-tester/java` in IntelliJ
+2. Run `couchbase.lite.tester.server.Server`
+3. Click on the links in the example above. The `Server` will process your requests and you will see the responses.
+4. Look at `couchbase.lite.tester.server.RequestHandler.java`. These methods are called from `Server.java` when a request is recieved.
+5. Look at `couchbase.lite.tester.client.TestCase.java`. These are the mothods used in the test example above. These methods call into `Client.java` which sends the requests over HTTP to the running `Server`.
+6. Look at `Tests/DatabaseTest.java` and `Tests/DocumentTest.java`. These classes derive from `TestCase` and can be run agianst any `Server` on any platform.
