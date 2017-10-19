@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,12 +32,12 @@ public class Server {
                 // Get args from query string.
                 Map<String, String> rawArgs = new HashMap<>();
                 Args args = new Args();
-                String query = httpExchange.getRequestURI().getQuery();
+                String query = httpExchange.getRequestURI().getRawQuery();
                 if (query != null) {
                     for (String param : query.split("&")) {
-                        String pair[] = param.split("=");
-                        String name = pair[0];
-                        String value = (pair.length > 1 ? pair[1] : null);
+                        String pair[] = param.split("=", 2);
+                        String name = URLDecoder.decode(pair[0], "UTF8");
+                        String value = URLDecoder.decode(pair.length > 1 ? pair[1] : null, "UTF8");
 
                         if (value != null) {
                             rawArgs.put(name, value);
