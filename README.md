@@ -34,6 +34,8 @@ public void testGetDocument() throws Exception {
 ## What that test looks like on the wire
 
 ### database = database_create("foo")
+<a href="http://localhost:3100/database_create?name="foo"" target="_code">http://localhost:3100/database_create?name="foo"</a>
+* **Request:**  POST [http://localhost:3100/database_create?name="foo"](http://localhost:3100/database_create?name="foo")
 * **Request:**  POST [http://localhost:3100/database_create?name="foo"](http://localhost:3100/database_create?name="foo")
 * **Response:** @1
 * **Content-Length:** 2
