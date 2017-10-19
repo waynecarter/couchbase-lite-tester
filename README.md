@@ -36,34 +36,42 @@ public void testGetDocument() throws Exception {
 ### database = database_create("foo")
 * **Request:**  POST http://localhost:3100/database_create?name="foo"
 * **Response:** @1
+* **Content-Length:** 2
 
 ### document = document_create("bar")
 * **Request:**  POST http://localhost:3100/document_create?id="bar"
 * **Response:** @2
+* **Content-Length:** 2
 
 ### database_save(database, document)
 * **Request:**  POST http://localhost:3100/database_save?database=@1&document=@2
 * **Response:** 
+* **Content-Length:** 0
 
 ### release(document)
 * **Request:**  POST http://localhost:3100/release?object=@2
 * **Response:** 
+* **Content-Length:** 0
 
 ### document = database_getDocument(database, "bar")
 * **Request:**  POST http://localhost:3100/database_getDocument?database=@1&id="bar"
 * **Response:** @3
+* **Content-Length:** 2
 
 ### String id = document_getId(document)
 * **Request:**  POST http://localhost:3100/document_getId?document=@3
 * **Response:** "bar"
+* **Content-Length:** 5
 
 ### release(document)
 * **Request:**  POST http://localhost:3100/release?object@3
 * **Response:** 
+* **Content-Length:** 0
 
 ### release(database)
 * **Request:**  POST http://localhost:3100/release?object@1
-* **Response:**
+* **Response:** 
+* **Content-Length:** 0
 
 ## A good place to start
 1. Run couchbase.lite.tester.server.Server
