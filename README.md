@@ -4,7 +4,7 @@ A simple testing framework for cross-platform functional testing of libraries. C
 
 The framework consistes of a Server and Client. A Server is written for every platform that needs to be tested (e.g. Cocoa, Java, .NET, etc) and hosts the Library to be tested. A Client is written once in the programming or scripting language of choice and is used by tests to invoke operations on the Library hosted by the Server. Communication between the Client and Server is over HTTP.
 
-The Server and Client only pass scalars of type String, Boolean, Integer, Decimal, and null, all other objects are transfered as Memory Pointers.
+The Server and Client only transfer scalars of type String, Boolean, Integer, Decimal, and null by value, all other objects are transfered by reference as a Memory Pointer.
 
 ## What a simple test looks like
 
