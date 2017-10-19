@@ -48,22 +48,23 @@ public class Server {
 
                 try {
                     // Find and invoke the method on the RequestHandler.
-                    Object result = null;
+                    String body = null;
                     if ("release".equals(method)) {
                         memory.remove(rawArgs.get("object"));
                     } else {
                         Method target = RequestHandler.class.getMethod(method, Args.class);
 
-                        if (target.getReturnType() == null) {
+                        if (target.getReturnType().equals(Void.TYPE)) {
                             target.invoke(requestHandler, args);
                         } else {
-                            result = target.invoke(requestHandler, args);
+                            Object result = target.invoke(requestHandler, args);
+
+                            body = ValueSerializer.serialize(result, memory);
                         }
                     }
 
                     httpExchange.getResponseHeaders().set("content-type","text/plain");
 
-                    String body = ValueSerializer.serialize(result, memory);
                     if (body != null) {
                         httpExchange.sendResponseHeaders(200, body.length());
 

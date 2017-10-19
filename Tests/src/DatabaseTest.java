@@ -38,6 +38,8 @@ public class DatabaseTest extends TestCase {
             document = document_create("bar");
             database_save(database, document);
 
+            release(document);
+
             document = database_getDocument(database, "bar");
             String id = document_getId(document);
 
