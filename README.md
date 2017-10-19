@@ -64,12 +64,12 @@ public void testGetDocument() throws Exception {
 * **Content-Length:** 5
 
 ### release(document)
-* **Request:**  POST http://localhost:3100/release?object@3
+* **Request:**  POST http://localhost:3100/release?object=@3
 * **Response:** 
 * **Content-Length:** 0
 
 ### release(database)
-* **Request:**  POST http://localhost:3100/release?object@1
+* **Request:**  POST http://localhost:3100/release?object=@1
 * **Response:** 
 * **Content-Length:** 0
 
