@@ -6,7 +6,7 @@ The framework consistes of a Server and Client. A Server is written for every pl
 
 The Server and Client only pass scalars of type String, Boolean, Integer, Decimal, and null, all other objects are transfered as Memory Pointers.
 
-## What a simple test looks like:
+## What a simple test looks like
 
 ```java
 public void testGetDocument() throws Exception {
@@ -31,7 +31,7 @@ public void testGetDocument() throws Exception {
 }
 ```
 
-## This is what that test lools like on the wire:
+## What that test lools like on the wire
 
 ### database = database_create("foo")
 * **Request:**  POST http://localhost:3100/database_create?name="foo"
@@ -57,15 +57,15 @@ public void testGetDocument() throws Exception {
 * **Request:**  POST http://localhost:3100/document_getId?document=@3
 * **Response:** "bar"
 
-### release(document);
+### release(document)
 * **Request:**  POST http://localhost:3100/release?object@3
 * **Response:** 
 
-### release(database);
+### release(database)
 * **Request:**  POST http://localhost:3100/release?object@1
 * **Response:**
 
-## A good place to start:
+## A good place to start
 1. Run couchbase.lite.tester.server.Server
 2. Click on the links in the example above. The server will process your requests and you will see the responses.
 3. Look at couchbase.lite.tester.server.RequestHandler.java. These methods are called from Server.java when a request is recieved.
