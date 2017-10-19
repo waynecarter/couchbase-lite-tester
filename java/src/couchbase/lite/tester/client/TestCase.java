@@ -228,9 +228,6 @@ public class TestCase extends junit.framework.TestCase {
     /* ---------- */
 
     public void release(MemoryPointer object) {
-        Args args = new Args();
-        args.setMemoryPointer("object", object);
-
-        _client.invokeMethod("release", args);
+        _client.release(object);
     }
 }

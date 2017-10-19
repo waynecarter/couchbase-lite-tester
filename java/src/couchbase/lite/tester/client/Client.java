@@ -68,6 +68,13 @@ public class Client {
         }
     }
 
+    public void release(MemoryPointer object) {
+        Args args = new Args();
+        args.setMemoryPointer("object", object);
+
+        this.invokeMethod("release", args);
+    }
+
     public class MethodInvocationException extends RuntimeException {
         private final int _responseCode;
         private final String _responseMessage;
