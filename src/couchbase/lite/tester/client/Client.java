@@ -24,7 +24,7 @@ public class Client {
             if (args != null) {
                 for (Args.Entry entry : args) {
                     query += (query.length() == 0 ? "?" : "&");
-                    query += entry.getKey() + "=";
+                    query += URLEncoder.encode(entry.getKey(), "UTF-8") + "=";
                     query += URLEncoder.encode(ValueSerializer.serialize(entry.getValue()), "UTF-8");
                 }
             }
