@@ -2,7 +2,7 @@
 
 A simple testing framework for cross-platform functional testing of libraries. Couchbase Lite is one example.
 
-The framework consistes of a `Client` and `Server`. A `Client` is written once in the programming or scripting language of choice and is used by tests to invoke operations on the Library hosted by the `Server`. A `Server` is written for every platform that needs to be tested (e.g. Cocoa, Java, .NET, etc) and hosts the Library to be tested. Communication between the `Client` and `Server` is over HTTP.
+The framework consistes of a `Client` and `Server`. A `Client` is written once in the programming or scripting language of choice and is used by tests to invoke operations on the Library hosted by a `Server`. A `Server` is written for every platform that needs to be tested (e.g. Cocoa, Java, .NET, etc) and hosts the Library to be tested. Communication between the `Client` and `Server` is over HTTP.
 
 The `Client` and `Server` only transfer scalars of type String, Boolean, Integer, Decimal, and null by value, all other objects are transfered by reference as a Memory Pointer.
 
@@ -78,4 +78,4 @@ public void testGetDocument() throws Exception {
 2. Click on the links in the example above. The `Server` will process your requests and you will see the responses.
 3. Look at `couchbase.lite.tester.server.RequestHandler.java`. These methods are called from `Server.java` when a request is recieved.
 4. Look at `couchbase.lite.tester.client.TestCase.java`. These are the mothods used in the test example above. These methods call into `Client.java` which sends the requests over HTTP to the running `Server`.
-5. Look at `Tests/DatabaseTest.java and Tests/DocumentTest.java`. These classes derive from `TestCase` and can be run agianst any `Server` on any platform.
+5. Look at `Tests/DatabaseTest.java` and `Tests/DocumentTest.java`. These classes derive from `TestCase` and can be run agianst any `Server` on any platform.
