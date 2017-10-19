@@ -1,6 +1,6 @@
 # Couchbase Lite Tester
 
-A simple testing framework for cross-platform functional testing of libraries. Couchbase Lite is one example.
+A simple testing framework for cross-platform functional testing of libraries. Couchbase Lite is one example of a library that can be tested using this framework.
 
 The framework consistes of a `Client` and `Server`. A `Client` is written once in the programming or scripting language of choice and is used by tests to invoke operations on the Library hosted by a `Server`. A `Server` is written for every platform that needs to be tested (e.g. Cocoa, Java, .NET, etc) and hosts the Library to be tested. Communication between the `Client` and `Server` is over HTTP.
 
