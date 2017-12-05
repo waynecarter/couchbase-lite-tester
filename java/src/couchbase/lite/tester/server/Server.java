@@ -4,8 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.URLDecoder;
@@ -29,10 +28,32 @@ public class Server {
                 String path = httpExchange.getRequestURI().getPath();
                 String method = (path.startsWith("/") ? path.substring(1) : path);
 
-                // Get args from query string.
+                // Get args from request.
                 Map<String, String> rawArgs = new HashMap<>();
                 Args args = new Args();
+                // First from the query string (Clients send args in the request body so this is mostly a convenience for dev).
                 String query = httpExchange.getRequestURI().getRawQuery();
+                // Then from the request body.
+                if (query == null) {
+                    Reader in = new InputStreamReader(httpExchange.getRequestBody());
+
+                    try {
+                        StringBuilder queryBuffer = new StringBuilder();
+
+                        char[] buffer = new char[1024];
+                        int read = 0;
+                        while ((read = in.read(buffer)) != -1) {
+                            queryBuffer.append(buffer, 0, read);
+                        }
+
+                        if (queryBuffer.length() > 0) {
+                            query = queryBuffer.toString();
+                        }
+                    } finally {
+                        in.close();
+                    }
+                }
+                // If we found args then decode them.
                 if (query != null) {
                     for (String param : query.split("&")) {
                         String pair[] = param.split("=", 2);

@@ -2,6 +2,8 @@ package couchbase.lite.tester.client;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -19,20 +21,49 @@ public class Client {
 
     public <T> T invokeMethod(String method, Args args) {
         try {
-            // Create query string from args.
-            String query = "";
-            if (args != null) {
-                for (Args.Entry entry : args) {
-                    query += (query.length() == 0 ? "?" : "&");
-                    query += URLEncoder.encode(entry.getKey(), "UTF-8") + "=";
-                    query += URLEncoder.encode(ValueSerializer.serialize(entry.getValue()), "UTF-8");
-                }
-            }
+//            // Create query string from args.
+//            String query = "";
+//            if (args != null) {
+//                for (Args.Entry entry : args) {
+//                    query += (query.length() == 0 ? "?" : "&");
+//                    query += URLEncoder.encode(entry.getKey(), "UTF-8") + "=";
+//                    query += URLEncoder.encode(ValueSerializer.serialize(entry.getValue()), "UTF-8");
+//                }
+//            }
+//
+//            // Create connection to method endpoint.
+//            URL url = new URL(_baseUrl, method + query);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod("POST");
+
+
 
             // Create connection to method endpoint.
-            URL url = new URL(_baseUrl, method + query);
+            URL url = new URL(_baseUrl, method);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
             connection.setRequestMethod("POST");
+
+            // Write args to request body.
+            OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+            try {
+                if (args != null) {
+                    int i = 0;
+
+                    for (Args.Entry entry : args) {
+                        if (i > 0) {
+                            out.write("&");
+                        }
+
+                        out.write(URLEncoder.encode(entry.getKey(), "UTF-8") + "=");
+                        out.write(URLEncoder.encode(ValueSerializer.serialize(entry.getValue()), "UTF-8"));
+
+                        i++;
+                    }
+                }
+            } finally {
+                out.close();
+            }
 
             // Process response.
             int responseCode = connection.getResponseCode();
