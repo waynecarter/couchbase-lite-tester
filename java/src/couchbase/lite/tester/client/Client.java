@@ -21,23 +21,6 @@ public class Client {
 
     public <T> T invokeMethod(String method, Args args) {
         try {
-//            // Create query string from args.
-//            String query = "";
-//            if (args != null) {
-//                for (Args.Entry entry : args) {
-//                    query += (query.length() == 0 ? "?" : "&");
-//                    query += URLEncoder.encode(entry.getKey(), "UTF-8") + "=";
-//                    query += URLEncoder.encode(ValueSerializer.serialize(entry.getValue()), "UTF-8");
-//                }
-//            }
-//
-//            // Create connection to method endpoint.
-//            URL url = new URL(_baseUrl, method + query);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("POST");
-
-
-
             // Create connection to method endpoint.
             URL url = new URL(_baseUrl, method);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
