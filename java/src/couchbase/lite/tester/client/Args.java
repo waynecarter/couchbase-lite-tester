@@ -1,8 +1,8 @@
 package couchbase.lite.tester.client;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class Args implements Iterable<Args.Entry> {
@@ -32,7 +32,7 @@ public class Args implements Iterable<Args.Entry> {
         _args.put(name, dictionary);
     }
 
-    public void setArray(String name, Collection array) {
+    public void setArray(String name, List array) {
         _args.put(name, array);
     }
 

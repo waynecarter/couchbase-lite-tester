@@ -3,8 +3,8 @@ package couchbase.lite.tester.client;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ValueSerializer {
@@ -37,17 +37,17 @@ public class ValueSerializer {
             }
 
             return new Gson().toJson(stringMap);
-        } else if (value instanceof Collection) {
-            Collection<Object> collection = (Collection<Object>)value;
-            Collection<String> stringCollection = new ArrayList<>();
+        } else if (value instanceof List) {
+            List list = (List)value;
+            List<String> stringList = new ArrayList<>();
 
-            for (Object object : collection) {
+            for (Object object : list) {
                 String string = serialize(object);
 
-                stringCollection.add(string);
+                stringList.add(string);
             }
 
-            return new Gson().toJson(stringCollection);
+            return new Gson().toJson(stringList);
         } else {
             throw new RuntimeException("Invalid value type: " + value.getClass().getName());
         }
@@ -77,16 +77,16 @@ public class ValueSerializer {
 
             return (T)map;
         } else if (value.startsWith("[")) {
-            Collection<String> stringCollection = new Gson().fromJson(value, Collection.class);
-            Collection<Object> collection = new ArrayList<>();
+            List<String> stringList = new Gson().fromJson(value, List.class);
+            List list = new ArrayList<>();
 
-            for (String string : stringCollection) {
+            for (String string : stringList) {
                 Object object = deserialize(string);
 
-                collection.add(object);
+                list.add(object);
             }
 
-            return (T)collection;
+            return (T)list;
         } else {
             if (value.contains(".")) {
                 return (T)new Double(value);
