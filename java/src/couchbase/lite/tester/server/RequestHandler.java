@@ -1,8 +1,6 @@
 package couchbase.lite.tester.server;
 
-import couchbase.lite.Database;
-import couchbase.lite.DatabaseChangeListener;
-import couchbase.lite.Document;
+import couchbase.lite.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,11 +36,45 @@ public class RequestHandler {
         return database.getDocument(id);
     }
 
+    public Map<String, Map<String, Object>> database_getDocuments(Args args) {
+        Database database = args.get("database");
+        List<String> ids = args.get("ids");
+        Map<String, Map<String, Object>> documents = new HashMap<>();
+
+        for (String id : ids) {
+            Document document = database.getDocument(id);
+
+            if (document != null) {
+                documents.put(id, document.toMap());
+            }
+        }
+
+        return documents;
+    }
+
     public void database_save(Args args) {
         Database database = args.get("database");
         Document document = args.get("document");
 
         database.save(document);
+    }
+
+    public void database_saveDocuments(Args args) {
+        Database database = args.get("database");
+        Map<String, Map<String, Object>> documents = args.get("documents");
+
+        database.inBatch(new Runnable() {
+            @Override
+            public void run() {
+                for (Map.Entry<String, Map<String, Object>> entry : documents.entrySet()) {
+                    String id = entry.getKey();
+                    Map<String, Object> data = entry.getValue();
+                    Document document = new Document(id, data);
+
+                    database.save(document);
+                }
+            }
+        });
     }
 
     public void database_delete(Args args) {
@@ -162,26 +194,47 @@ public class RequestHandler {
         document.setString(property, string);
     }
 
-    /* -------------- */
-    /* - Dictionary - */
-    /* -------------- */
+    public Map<String, Object> document_getDictionary(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
 
-    public Map dictionary_create(Args args) {
-        return new HashMap();
+        DictionaryObject dictionary = document.getDictionary(property);
+
+        return (dictionary != null ? dictionary.toMap() : null);
     }
 
-    public Object dictionary_get(Args args) {
+    public void document_setDictionary(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
         Map<String, Object> map = args.get("dictionary");
-        String key = args.get("key");
 
-        return map.get(key);
+        DictionaryObject dictionary = new DictionaryObject(map);
+
+        document.setDictionary(property, dictionary);
     }
 
-    public void dictionary_put(Args args) {
-        Map<String, Object> map = args.get("dictionary");
-        String key = args.get("key");
-        String string = args.get("string");
+    public List document_getArray(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
 
-        map.put(key, string);
+        ArrayObject array = document.getArray(property);
+
+        return (array != null ? array.toList() : null);
+    }
+
+    public void document_setArray(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        List list = args.get("array");
+
+        ArrayObject array = new ArrayObject(list);
+
+        document.setArray(property, array);
+    }
+
+    public Map<String, Object> document_toMap(Args args) {
+        Document document = args.get("document");
+
+        return document.toMap();
     }
 }

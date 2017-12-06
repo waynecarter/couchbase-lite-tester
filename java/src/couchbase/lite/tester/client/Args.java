@@ -1,5 +1,6 @@
 package couchbase.lite.tester.client;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -25,6 +26,14 @@ public class Args implements Iterable<Args.Entry> {
 
     public void setBoolean(String name, boolean bool) {
         _args.put(name, bool);
+    }
+
+    public void setDictionary(String name, Map<String, Object> dictionary) {
+        _args.put(name, dictionary);
+    }
+
+    public void setArray(String name, Collection array) {
+        _args.put(name, array);
     }
 
     @Override

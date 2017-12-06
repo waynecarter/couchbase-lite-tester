@@ -1,8 +1,6 @@
 package couchbase.lite;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Document {
     private final String _id;
@@ -43,5 +41,45 @@ public class Document {
 
     public void setString(String property, String string) {
         _data.put(property, string);
+    }
+
+    public DictionaryObject getDictionary(String property) {
+        DictionaryObject dictionary;
+
+        Object object = _data.get(property);
+        if (object instanceof Map) {
+            dictionary = new DictionaryObject((Map<String, Object>)object);
+            _data.put(property, dictionary);
+        } else {
+            dictionary = (DictionaryObject)object;
+        }
+
+        return dictionary;
+    }
+
+    public void setDictionary(String property, DictionaryObject dictionary) {
+        _data.put(property, dictionary);
+    }
+
+    public ArrayObject getArray(String property) {
+        ArrayObject array;
+
+        Object object = _data.get(property);
+        if (object instanceof List) {
+            array = new ArrayObject((List)_data);
+            _data.put(property, array);
+        } else {
+            array = (ArrayObject)object;
+        }
+
+        return array;
+    }
+
+    public void setArray(String property, ArrayObject array) {
+        _data.put(property, array);
+    }
+
+    public Map<String, Object> toMap() {
+        return Collections.unmodifiableMap(_data);
     }
 }

@@ -2,6 +2,11 @@ import couchbase.lite.tester.client.MemoryPointer;
 import couchbase.lite.tester.client.TestCase;
 import junit.framework.Assert;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DatabaseTest extends TestCase {
 
     public void testCreate() throws Exception {
@@ -50,6 +55,42 @@ public class DatabaseTest extends TestCase {
         }
     }
 
+    public void testGetDocuments() throws Exception {
+        MemoryPointer database = null;
+
+        try {
+            database = database_create("foo");
+
+            Map<String, Map<String, Object>> documents = new HashMap<>();
+            for (int i=0; i<5; i++) {
+                String id = "doc" + i;
+
+                Map<String, Object> data = new HashMap<>();
+                data.put("name" + i, "value" + i);
+
+                documents.put(id, data);
+            }
+            database_saveDocuments(database, documents);
+
+            List<String> ids = new ArrayList<>();
+            for (int i=0; i<5; i++) {
+                String id = "doc" + i;
+
+                ids.add(id);
+            }
+            documents = database_getDocuments(database, ids);
+
+            for (int i=0; i<5; i++) {
+                String id = "doc" + i;
+                Map<String, Object> document = documents.get(id);
+
+                assertEquals("value" + i, document.get("name" + i));
+            }
+        } finally {
+            release(database);
+        }
+    }
+
     public void testSave() throws Exception {
         MemoryPointer database = null;
         MemoryPointer document = null;
@@ -64,6 +105,10 @@ public class DatabaseTest extends TestCase {
             release(document);
             release(database);
         }
+    }
+
+    public void testSaveDocuments() throws Exception {
+        testGetDocuments();
     }
 
     public void testDelete() throws Exception {

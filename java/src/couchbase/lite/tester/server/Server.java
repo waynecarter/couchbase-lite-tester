@@ -4,7 +4,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.URLDecoder;
@@ -20,7 +23,7 @@ public class Server {
         RequestHandler requestHandler = new RequestHandler();
 
         server.createContext("/", new HttpHandler() {
-            private Memory memory = new Memory();
+            private final Memory memory = new Memory();
 
             @Override
             public void handle(HttpExchange httpExchange) throws IOException {
