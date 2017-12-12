@@ -43,6 +43,46 @@ public class Document {
         _data.put(property, string);
     }
 
+    public int getInt(String property) {
+        return (int)_data.get(property);
+    }
+
+    public void setInt(String property, int i) {
+        _data.put(property, i);
+    }
+
+    public long getLong(String property) {
+        return (long)_data.get(property);
+    }
+
+    public void setLong(String property, long l) {
+        _data.put(property, l);
+    }
+
+    public float getFloat(String property) {
+        return (float)_data.get(property);
+    }
+
+    public void setFloat(String property, float f) {
+        _data.put(property, f);
+    }
+
+    public double getDouble(String property) {
+        return (double)_data.get(property);
+    }
+
+    public void setDouble(String property, double d) {
+        _data.put(property, d);
+    }
+
+    public Number getNumber(String property) {
+        return (Number)_data.get(property);
+    }
+
+    public void setNumber(String property, Number number) {
+        _data.put(property, number);
+    }
+
     public DictionaryObject getDictionary(String property) {
         DictionaryObject dictionary;
 

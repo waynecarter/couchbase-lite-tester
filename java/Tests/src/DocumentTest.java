@@ -97,18 +97,117 @@ public class DocumentTest extends TestCase {
     }
 
     public void testSetString() throws Exception {
+        testGetString();
+    }
+
+    public void testGetInt() throws Exception {
         MemoryPointer document = null;
 
         try {
             document = document_create();
-            document_setString(document, "foo", "bar");
+            document_setInt(document, "min", Integer.MIN_VALUE);
+            document_setInt(document, "max", Integer.MAX_VALUE);
 
-            String foo = document_getString(document, "foo");
+            int min = document_getInt(document, "min");
+            int max = document_getInt(document, "max");
 
-            Assert.assertEquals("bar", foo);
+            Assert.assertEquals(Integer.MIN_VALUE, min);
+            Assert.assertEquals(Integer.MAX_VALUE, max);
         } finally {
             release(document);
         }
+    }
+
+    public void testSetInt() throws Exception {
+        testGetInt();
+    }
+
+    public void testGetLong() throws Exception {
+        MemoryPointer document = null;
+
+        try {
+            document = document_create();
+            document_setLong(document, "min", Long.MIN_VALUE);
+            document_setLong(document, "max", Long.MAX_VALUE);
+
+            long min = document_getLong(document, "min");
+            long max = document_getLong(document, "max");
+
+            Assert.assertEquals(Long.MIN_VALUE, min);
+            Assert.assertEquals(Long.MAX_VALUE, max);
+        } finally {
+            release(document);
+        }
+    }
+
+    public void testSetLong() throws Exception {
+        testGetLong();
+    }
+
+    public void testGetFloat() throws Exception {
+        MemoryPointer document = null;
+
+        try {
+            document = document_create();
+            document_setFloat(document, "min", Float.MIN_VALUE);
+            document_setFloat(document, "max", Float.MAX_VALUE);
+
+            float min = document_getFloat(document, "min");
+            float max = document_getFloat(document, "max");
+
+            Assert.assertEquals(Float.MIN_VALUE, min);
+            Assert.assertEquals(Float.MAX_VALUE, max);
+        } finally {
+            release(document);
+        }
+    }
+
+    public void testSetFloat() throws Exception {
+        testGetFloat();
+    }
+
+    public void testGetDouble() throws Exception {
+        MemoryPointer document = null;
+
+        try {
+            document = document_create();
+            document_setDouble(document, "min", Double.MIN_VALUE);
+            document_setDouble(document, "max", Double.MAX_VALUE);
+
+            double min = document_getDouble(document, "min");
+            double max = document_getDouble(document, "max");
+
+            Assert.assertEquals(Double.MIN_VALUE, min);
+            Assert.assertEquals(Double.MAX_VALUE, max);
+        } finally {
+            release(document);
+        }
+    }
+
+    public void testGetNumber() throws Exception {
+        MemoryPointer document = null;
+
+        try {
+            document = document_create();
+            document_setNumber(document, "min", Double.MIN_VALUE);
+            document_setNumber(document, "max", Double.MAX_VALUE);
+
+            Number min = document_getNumber(document, "min");
+            Number max = document_getNumber(document, "max");
+
+            Assert.assertEquals(Double.MIN_VALUE, min);
+            Assert.assertEquals(Double.MAX_VALUE, max);
+        } finally {
+            release(document);
+        }
+    }
+
+    public void testSetNumber() throws Exception {
+        testGetNumber();
+    }
+
+    public void testSetDouble() throws Exception {
+        testGetDouble();
     }
 
     public void testGetDictionary() throws Exception {

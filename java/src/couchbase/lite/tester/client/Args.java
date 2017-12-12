@@ -16,8 +16,20 @@ public class Args implements Iterable<Args.Entry> {
         _args.put(name, string);
     }
 
-    public void setInt(String name, int integer) {
-        _args.put(name, integer);
+    public void setInt(String name, int i) {
+        _args.put(name, i);
+    }
+
+    public void setLong(String name, long l) {
+        _args.put(name, l);
+    }
+
+    public void setFloat(String name, float f) {
+        _args.put(name, f);
+    }
+
+    public void setDouble(String name, double d) {
+        _args.put(name, d);
     }
 
     public void setNumber(String name, Number number) {

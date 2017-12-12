@@ -194,6 +194,81 @@ public class RequestHandler {
         document.setString(property, string);
     }
 
+    public int document_getInt(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+
+        return document.getInt(property);
+    }
+
+    public void document_setInt(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        int i = args.get("int");
+
+        document.setInt(property, i);
+    }
+
+    public long document_getLong(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+
+        return document.getLong(property);
+    }
+
+    public void document_setLong(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        long l = args.get("long");
+
+        document.setLong(property, l);
+    }
+
+    public float document_getFloat(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+
+        return document.getFloat(property);
+    }
+
+    public void document_setFloat(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        float f = args.get("float");
+
+        document.setFloat(property, f);
+    }
+
+    public double document_getDouble(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+
+        return document.getDouble(property);
+    }
+
+    public void document_setDouble(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        double d = args.get("double");
+
+        document.setDouble(property, d);
+    }
+
+    public Number document_getNumber(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+
+        return document.getNumber(property);
+    }
+
+    public void document_setNumber(Args args) {
+        Document document = args.get("document");
+        String property = args.get("property");
+        Number number = args.get("number");
+
+        document.setNumber(property, number);
+    }
+
     public Map<String, Object> document_getDictionary(Args args) {
         Document document = args.get("document");
         String property = args.get("property");

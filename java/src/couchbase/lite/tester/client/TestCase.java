@@ -219,6 +219,91 @@ public class TestCase extends junit.framework.TestCase {
         _client.invokeMethod("document_setString", args);
     }
 
+    public int document_getInt(MemoryPointer document, String property) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+
+        return _client.invokeMethod("document_getInt", args);
+    }
+
+    public void document_setInt(MemoryPointer document, String property, int i) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+        args.setInt("int", i);
+
+        _client.invokeMethod("document_setInt", args);
+    }
+
+    public long document_getLong(MemoryPointer document, String property) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+
+        return _client.invokeMethod("document_getLong", args);
+    }
+
+    public void document_setLong(MemoryPointer document, String property, long l) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+        args.setLong("long", l);
+
+        _client.invokeMethod("document_setLong", args);
+    }
+
+    public float document_getFloat(MemoryPointer document, String property) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+
+        return _client.invokeMethod("document_getFloat", args);
+    }
+
+    public void document_setFloat(MemoryPointer document, String property, float f) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+        args.setFloat("float", f);
+
+        _client.invokeMethod("document_setFloat", args);
+    }
+
+    public double document_getDouble(MemoryPointer document, String property) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+
+        return _client.invokeMethod("document_getDouble", args);
+    }
+
+    public void document_setDouble(MemoryPointer document, String property, double d) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+        args.setDouble("double", d);
+
+        _client.invokeMethod("document_setDouble", args);
+    }
+
+    public Number document_getNumber(MemoryPointer document, String property) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+
+        return _client.invokeMethod("document_getNumber", args);
+    }
+
+    public void document_setNumber(MemoryPointer document, String property, Number number) {
+        Args args = new Args();
+        args.setMemoryPointer("document", document);
+        args.setString("property", property);
+        args.setNumber("number", number);
+
+        _client.invokeMethod("document_setNumber", args);
+    }
+
     public Map<String, Object> document_getDictionary(MemoryPointer document, String property) {
         Args args = new Args();
         args.setMemoryPointer("document", document);
